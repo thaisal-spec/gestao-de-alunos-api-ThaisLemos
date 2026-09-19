@@ -14,11 +14,10 @@ jobs:
     - name: Checkout do Código
       uses: actions/checkout@v4
 
-    # 💡 Aqui entra a dica do seu amigo (Atualizado para Node 20):
-    - name: Setup Node.js
+    - name: Configurar Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: 20
         cache: 'npm'
 
     - name: Instalar Dependências
@@ -36,4 +35,5 @@ jobs:
         API_URL: http://localhost:3000
         ADMIN_EMAIL: admin@escola.com
         ADMIN_SENHA: admin123
-      run: npm test
+      # 💡 Comando definitivo: Executa o mocha através do loader nativo do Node para módulos ES
+      run: node --experimental-modules ./node_modules/mocha/bin/mocha test/e2e-fluxo.test.js --timeout 10000
