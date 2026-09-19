@@ -17,7 +17,7 @@ jobs:
     - name: Configurar Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
         cache: 'npm'
 
     - name: Instalar Dependências
@@ -25,12 +25,10 @@ jobs:
 
     - name: Inicializar a API em Segundo Plano
       run: |
-        npm start &
-        echo "Aguardando a API subir completamente..."
-        until curl -s http://localhost:3000/ > /dev/null; do
-          sleep 1
-        done
-        echo "API online e pronta para testes!"
+        npm start > api.log 2>&1 &
+        echo "Aguardando a API inicializar os seeds na nuvem..."
+        sleep 8
+        echo "API inicializada!"
 
     - name: Executar Testes com Mocha e Supertest
       env:
