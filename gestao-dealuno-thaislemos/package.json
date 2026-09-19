@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "mocha test/e2e-fluxo.test.js --timeout 10000"
+    "test": "mocha test/e2e-fluxo.test.js --timeout 10000 --import=data:text/javascript,"
   },
   "author": "",
   "license": "ISC",

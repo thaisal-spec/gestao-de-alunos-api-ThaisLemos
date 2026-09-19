@@ -35,5 +35,4 @@ jobs:
         API_URL: http://localhost:3000
         ADMIN_EMAIL: admin@escola.com
         ADMIN_SENHA: admin123
-      # 💡 Mudamos aqui para forçar o carregamento via Node moderno na nuvem
-      run: npx mocha test/e2e-fluxo.test.js --timeout 10000 --node-option experimental-modules
+      run: npm test
