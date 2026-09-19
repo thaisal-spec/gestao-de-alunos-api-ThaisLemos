@@ -35,5 +35,4 @@ jobs:
         API_URL: http://localhost:3000
         ADMIN_EMAIL: admin@escola.com
         ADMIN_SENHA: admin123
-      # 💡 Comando definitivo: Executa o mocha através do loader nativo do Node para módulos ES
-      run: node --experimental-modules ./node_modules/mocha/bin/mocha test/e2e-fluxo.test.js --timeout 10000
+      run: npm test
