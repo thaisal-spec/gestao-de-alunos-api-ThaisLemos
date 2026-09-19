@@ -1,0 +1,12 @@
+{
+  "alunoCadastro": {
+    "nome": "Marcos Silva Automacao",
+    "email": "marcos.silva@testeapi.com",
+    "matricula": "20261109",
+    "senha": "senhaSegura123"
+  },
+  "trabalho": {
+    "disciplinaId": "1",
+    "titulo": "Trabalho Final de Automacao"
+  }
+}

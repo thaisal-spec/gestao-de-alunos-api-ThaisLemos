@@ -1,0 +1,39 @@
+name: Execução de Testes E2E
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  run-e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do Código
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Instalar Dependências
+      run: npm install
+
+    - name: Inicializar a API em Segundo Plano
+      run: |
+        # Inicia a API gravando os logs em um arquivo temporário para não sumir com erros do node
+        npm start > api.log 2>&1 &
+        echo "Aguardando a API inicializar os seeds na nuvem..."
+        sleep 8
+        echo "API inicializada!"
+
+    - name: Executar Testes com Mocha e Supertest
+      env:
+        API_URL: http://localhost:3000
+        ADMIN_EMAIL: admin@escola.com
+        ADMIN_SENHA: admin123
+      run: npm test
