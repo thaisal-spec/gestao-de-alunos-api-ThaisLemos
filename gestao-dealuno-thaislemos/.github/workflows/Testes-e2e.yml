@@ -25,7 +25,6 @@ jobs:
 
     - name: Inicializar a API em Segundo Plano
       run: |
-        # Inicia a API gravando os logs em um arquivo temporário para não sumir com erros do node
         npm start > api.log 2>&1 &
         echo "Aguardando a API inicializar os seeds na nuvem..."
         sleep 8
@@ -36,4 +35,5 @@ jobs:
         API_URL: http://localhost:3000
         ADMIN_EMAIL: admin@escola.com
         ADMIN_SENHA: admin123
-      run: npm test
+      # 💡 Mudamos aqui para forçar o carregamento via Node moderno na nuvem
+      run: npx mocha test/e2e-fluxo.test.js --timeout 10000 --node-option experimental-modules
